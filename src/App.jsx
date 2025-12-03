@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-green">
+    <div className="min-h-screen bg-green w-full">
 
       {!loggedIn ? (
         <LogIn />   
