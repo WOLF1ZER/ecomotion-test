@@ -13,7 +13,7 @@ export default defineConfig({
         short_name: 'EcoMotion',
         description: 'Track your eco-friendly trips',
         theme_color: '#4CAF50',
-        background_color: '##4CAF50',
+        background_color: '#4CAF50',
         display: 'standalone',
         start_url: '/',
         icons: [
