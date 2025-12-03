@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Dashboard from './tabs/dashboard'
+import Dashboard from "./tabs/Dashboard.jsx";
 import LogIn from './tabs/LogIn'
 import { Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu"
