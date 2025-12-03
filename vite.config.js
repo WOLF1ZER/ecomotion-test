@@ -12,8 +12,8 @@ export default defineConfig({
         name: 'EcoMotion',
         short_name: 'EcoMotion',
         description: 'Track your eco-friendly trips',
-        theme_color: '#4CAF50',
-        background_color: '#4CAF50',
+        theme_color: '#F5FDF7',
+        background_color: '#F5FDF7',
         display: 'standalone',
         start_url: '/',
         icons: [
