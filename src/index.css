@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css"; /*for map */
+
+
+@theme {
+  --color-primary: #2F8B3F;
+  --color-secondary: #4CAF50;
+  --color-green: #F5FDF7;
+  --color-highlight: #CDE7FB;
+  --color-accent: #1E88E5;
+  --color-leaf: #8BC34A;
+  --color-sun: #FFEB3B;
+  --color-water: #03A9F4;
+  --color-bird: #388E3C;
+  --color-forest: #1A3D2F;
+}
+
+/* Hide Scrollbars */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+* {
+  scrollbar-width: none; 
+}
+* {
+  -ms-overflow-style: none;
+}
