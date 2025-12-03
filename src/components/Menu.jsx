@@ -14,7 +14,7 @@ const navigate = useNavigate();
 
     return (
         <div className="w-full bg-white shadow-sm rounded-b-3xl z-9999 fixed">
-            <div className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+            <div className="mx-auto flex justify-between items-center px-6 py-4">
 
                 {/* Logo */}
                 <div className="flex items-center gap-3">
