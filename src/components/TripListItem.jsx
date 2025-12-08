@@ -38,12 +38,10 @@ const TripListItem = ({ trip, onDelete }) => {
           <div className="w-12 h-12 rounded-full bg-softgreen flex items-center justify-center">
             {modeIcons[trip.mode] ?? <FaWalking className="text-primary" />}
           </div>
-
           <div>
             <p className="text-xl font-semibold text-forest">
               {trip.distance?.toFixed(1)} km
             </p>
-
             <p className="text-sm text-gray-600">
               {durationMin} min • {formattedDate} {formattedTime}
             </p>
@@ -59,7 +57,7 @@ const TripListItem = ({ trip, onDelete }) => {
       {showBin && (
         <button
           onClick={(e) => {
-            e.stopPropagation(); // don’t close the menu
+            e.stopPropagation(); //dont close the menu
             onDelete(trip.id);
           }}
           className="

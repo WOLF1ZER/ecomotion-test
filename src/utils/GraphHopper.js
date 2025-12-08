@@ -11,4 +11,4 @@ export async function getRoute(start, end, mode = "foot") {
     time: data.paths[0].time,
     points: data.paths[0].points.coordinates.map(([lng, lat]) => ({ lat, lng })),
   };
-}
+} // for route planning

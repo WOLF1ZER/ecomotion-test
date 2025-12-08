@@ -1,6 +1,6 @@
 import React from "react";
 
-function formatTime(ms = 0) {
+function formatTime(ms = 0) { //format time correctly
   if (!ms || ms < 0) return "0m 0s";
 
   const sec = Math.floor(ms / 1000);
@@ -16,24 +16,18 @@ const TrackStats = ({ distance = 0, duration = 0, co2Saved = 0 }) => {
 
   return (
     <div className="mt-6 grid grid-cols-3 gap-4 text-center">
-
-      {/* Distance */}
       <div className="bg-softgreen p-4 rounded-2xl shadow-sm">
         <p className="text-sm text-gray-600">Distance</p>
         <p className="text-xl font-bold text-primary">
           {safeDistance.toFixed(2)} km
         </p>
       </div>
-
-      {/* Duration */}
       <div className="bg-highlight p-4 rounded-2xl shadow-sm">
         <p className="text-sm text-gray-600">Duration</p>
         <p className="text-xl font-bold text-forest">
           {formatTime(duration)}
         </p>
       </div>
-
-      {/* CO₂ */}
       <div className="bg-yellow-100 p-4 rounded-2xl shadow-sm">
         <p className="text-sm text-gray-600">CO₂ Saved</p>
         <p className="text-xl font-bold text-green-700">

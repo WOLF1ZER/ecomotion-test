@@ -8,33 +8,30 @@ const usePWAInstall = () => {
       event.preventDefault();
       setDeferredPrompt(event);
     };
-
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-
     return () => {
       window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
     };
   }, []);
 
   const installPWA = () => {
-    // Detect iOS Safari and show install instructions
+    //check device fix for ios
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isInStandaloneMode =
       window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
-
-    // Detect the user's language (default to English)
+    //get correct lang
     const userLang = navigator.language.startsWith("ru") ? "ru" : "en";
-
+    // messages for ios how to download, android downloads automatically
     if (isIOS && !isInStandaloneMode) {
       const messages = {
-        en: 
+        en:
           "To install this app on iOS:\n\n" +
           "1️⃣ Tap the **Share** button (🔗) in Safari.\n" +
           "2️⃣ Scroll down and tap **Add to Home Screen** (➕🏠).\n" +
           "3️⃣ Confirm by tapping **Add**.\n\n" +
           "The app will now appear on your home screen!",
-        
-        ru: 
+
+        ru:
           "Чтобы установить это приложение на iOS:\n\n" +
           "1️⃣ Нажмите кнопку **Поделиться** (🔗) в Safari.\n" +
           "2️⃣ Прокрутите вниз и выберите **Добавить на экран «Домой»** (➕🏠).\n" +
@@ -45,8 +42,6 @@ const usePWAInstall = () => {
       alert(messages[userLang]);
       return;
     }
-
-    // Show install prompt on PC (desktop) and Android
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult) => {
@@ -55,11 +50,11 @@ const usePWAInstall = () => {
         } else {
           console.log("User dismissed the PWA install.");
         }
-        setDeferredPrompt(null); // Reset after use
+        setDeferredPrompt(null);
       });
     } else {
-      alert(userLang === "ru" 
-        ? "Установка недоступна. Попробуйте обновить страницу или использовать другой браузер." 
+      alert(userLang === "ru"
+        ? "Установка недоступна. Попробуйте обновить страницу или использовать другой браузер."
         : "Installation is not available. Try refreshing the page or using a different browser."
       );
     }

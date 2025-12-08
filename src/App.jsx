@@ -19,7 +19,7 @@ import { auth } from "./utils/firebase";
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-
+    //login check
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       setLoggedIn(!!user);
@@ -30,7 +30,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-green w-full">
-
       {!loggedIn ? (
         <LogIn />   
       ) : (
@@ -40,7 +39,7 @@ function App() {
           <div className="max-w-6xl mx-auto px-4 py-6 w-full">
             <ToastContainer />
 
-            <Routes>
+            <Routes> 
               <Route path="/" element={<Dashboard />} />
               <Route path="/plan" element={<PlanJourney />} />
               <Route path="/track" element={<StartTracking />} />

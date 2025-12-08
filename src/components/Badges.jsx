@@ -21,8 +21,7 @@ const Badges = () => {
 
       const snap = await getDocs(collection(db, "users", user.uid, "trips"));
       const trips = snap.docs.map((d) => d.data());
-
-      // Detect used transportation modes
+      //get mode
       const walkUsed = trips.some((t) => t.mode === "walk" || t.mode === "foot");
       const bikeUsed = trips.some((t) => t.mode === "bike");
       const scootUsed = trips.some((t) => t.mode === "scooter");
@@ -58,7 +57,7 @@ const Badges = () => {
         >
           <IoBicycle size={26} />
         </div>
-         <div
+        <div
           className={`w-14 h-14 rounded-full flex items-center justify-center shadow-sm
           ${usedModes.scooter ? "bg-yellow-100 text-yellow-700" : "bg-white text-gray-400 border"} `}
         >
@@ -66,13 +65,10 @@ const Badges = () => {
         </div>
 
       </div>
-
-
       <p className="text-sm text-gray-700 mb-2">Progress Earned</p>
       <div className="w-full h-3 bg-gray-200 rounded-xl">
         <div className="h-full bg-primary rounded-xl" style={{ width: `${progressPercent}%` }}></div>
       </div>
-
       <p className="mt-2 text-sm text-gray-600">{totalEarned} / 3 badges earned</p>
     </div>
   );

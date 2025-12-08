@@ -7,20 +7,20 @@ import { FaWalking } from "react-icons/fa";
 import { IoBicycle } from "react-icons/io5";
 import { MdElectricScooter } from "react-icons/md";
 
-// Normalized keys: walk, bike, scooter
+//mode selected
 const MODE_ICON = {
   walk: <FaWalking className="text-primary text-2xl" />,
   bike: <IoBicycle className="text-blue-600 text-2xl" />,
   scooter: <MdElectricScooter className="text-yellow-600 text-2xl" />,
 };
-
+//badge
 const MODE_BADGE = {
   walk: "bg-green-100 text-primary",
   bike: "bg-blue-100 text-blue-600",
   scooter: "bg-yellow-100 text-yellow-700",
 };
 
-// normalize DB modes here
+//normalize DB modes
 function normalizeMode(mode) {
   if (mode === "foot") return "walk";
   return mode;
@@ -45,7 +45,7 @@ const PlannedJourneys = () => {
       return {
         id: d.id,
         ...data,
-        mode: normalizeMode(data.mode), // FIXED
+        mode: normalizeMode(data.mode),
       };
     });
 
@@ -91,26 +91,17 @@ const PlannedJourneys = () => {
           {planned.map((trip) => (
             <div
               key={trip.id}
-              className="
-    p-4 rounded-2xl bg-softgreen/60 shadow-sm
-    flex flex-col sm:flex-row sm:items-center sm:justify-between
-    gap-4 sm:gap-6
-    hover:shadow-md transition cursor-pointer bg-green
-  "
-            >
-              {/* LEFT SIDE */}
+              className="p-4 rounded-2xl bg-softgreen/60 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 hover:shadow-md transition cursor-pointer bg-green">
               <div className="flex items-center gap-4 flex-1">
                 <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow">
                   {MODE_ICON[trip.mode]}
                 </div>
-
                 <div className="flex flex-col">
+                  {/* for name triming */}
                   <h3 className="text-lg font-semibold text-forest">
                     <span className="block lg:hidden">
                       {trimName(trip.name)}
                     </span>
-
-                    {/* Large screens: full name */}
                     <span className="hidden lg:block">
                       {trip.name}
                     </span></h3>
@@ -118,27 +109,15 @@ const PlannedJourneys = () => {
                   <p className="text-sm text-gray-700">{formatDateTime(trip.date)}</p>
 
                   <span
-                    className={`
-          mt-1 w-fit inline-block px-2 py-1 rounded-lg text-xs font-medium 
-          ${MODE_BADGE[trip.mode]}
-        `}
+                    className={`mt-1 w-fit inline-block px-2 py-1 rounded-lg text-xs font-medium ${MODE_BADGE[trip.mode]}`}
                   >
                     {trip.mode}
                   </span>
                 </div>
               </div>
-
-              {/* RIGHT BUTTON */}
               <button
                 onClick={() => startPlannedTrip(trip)}
-                className="
-      w-full sm:w-auto
-      py-2 px-4 rounded-xl
-      bg-primary text-white 
-      font-medium text-sm cursor-pointer
-      hover:bg-secondary transition
-    "
-              >
+                className="w-full sm:w-auto py-2 px-4 rounded-xl bg-primary text-white font-medium text-sm cursor-pointer hover:bg-secondary transition">
                 Start
               </button>
             </div>

@@ -10,7 +10,7 @@ const urlsToCache = [
   '/favicon.png'
 ];
 
-// Install event – caching files
+//install, chaching
 self.addEventListener('install', event => {
   console.log('[Service Worker] Installing...');
   event.waitUntil(
@@ -22,7 +22,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate event – cleanup old caches
+//clean old
 self.addEventListener('activate', event => {
   console.log('[Service Worker] Activated');
   event.waitUntil(
@@ -39,7 +39,7 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch event – serve cached content if available
+//fetch content
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)

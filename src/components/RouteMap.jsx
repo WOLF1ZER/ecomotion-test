@@ -8,7 +8,7 @@ const RouteMap = () => {
   const [routePoints, setRoutePoints] = useState([]);
 
   async function fetchRoute() {
-    const route = await getRoute(start, end, "bike"); // or "foot"
+    const route = await getRoute(start, end, "bike"); //or foot
     if (route) {
       setRoutePoints(route.points);
       console.log("Distance (m):", route.distance);

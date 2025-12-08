@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
-// Firebase
+//firebase
 import { db, auth } from "../utils/firebase";
 import {
   addDoc,
@@ -11,11 +11,8 @@ import {
   doc,
 } from "firebase/firestore";
 
-/* -------------------------------------------------
-   HELPERS
-------------------------------------------------- */
 
-// Haversine distance (km)
+//Haversine formula to count 
 function haversineKm(a, b) {
   const R = 6371;
   const toRad = (d) => (d * Math.PI) / 180;
@@ -32,18 +29,15 @@ function haversineKm(a, b) {
   return R * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
 }
 
-// Keep point only if distance >= X meters
+//keep point only if distance >= X meters
 function shouldKeepPoint(last, point, minMeters = 5) {
   if (!last) return true;
   const km = haversineKm(last, point);
   return km * 1000 >= minMeters;
 }
 
-/* -------------------------------------------------
-   CO₂ FACTORS
-------------------------------------------------- */
-
-const CO2_CAR = 0.192; // kg per km
+//co2 calc
+const CO2_CAR = 0.192; 
 
 const MODE_CO2 = {
   walk: CO2_CAR,
@@ -51,9 +45,6 @@ const MODE_CO2 = {
   scooter: CO2_CAR * 0.6,
 };
 
-/* -------------------------------------------------
-   MAIN HOOK
-------------------------------------------------- */
 
 export default function useTracker() {
   const [recording, setRecording] = useState(false);
@@ -65,16 +56,14 @@ export default function useTracker() {
   const [co2Saved, setCo2Saved] = useState(0);
 
   const [mode, setMode] = useState("walk");
-
+//refs for getting data
   const watchIdRef = useRef(null);
   const startTimeRef = useRef(null);
   const distanceRef = useRef(0);
 
-  const plannedTripRef = useRef(null); // { id, name, date, mode }
+  const plannedTripRef = useRef(null); //{ id, name, date, mode }
 
-  /* -----------------------------------------
-     INITIAL POSITION
-  ----------------------------------------- */
+//get current position
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -91,9 +80,7 @@ export default function useTracker() {
     );
   }, []);
 
-  /* -----------------------------------------
-     START TRACKING
-  ----------------------------------------- */
+  //start track
   function start(plannedTrip = null) {
     if (recording) return;
 
@@ -108,9 +95,7 @@ export default function useTracker() {
     plannedTripRef.current = plannedTrip; // save planned trip if any
   }
 
-  /* -----------------------------------------
-     STOP TRACKING + SAVE
-  ----------------------------------------- */
+ //stop track
   async function stop() {
     if (!recording) return;
     setRecording(false);
@@ -142,10 +127,10 @@ export default function useTracker() {
       planned: !!plannedTripRef.current,
     };
 
-    // Save trip
+    //save trip
     await addDoc(collection(db, "users", user.uid, "trips"), trip);
 
-    // Mark planned trip completed
+    //mark planned trip completed
     if (plannedTripRef.current?.id) {
       const ref = doc(
         db,
@@ -160,7 +145,7 @@ export default function useTracker() {
 
     toast.success("Trip saved!");
 
-    // Reset
+    //reset
     setPath([]);
     setDistance(0);
     setDuration(0);
@@ -169,9 +154,7 @@ export default function useTracker() {
     plannedTripRef.current = null;
   }
 
-  /* -----------------------------------------
-     TIMER
-  ----------------------------------------- */
+//time
   useEffect(() => {
     if (!recording) return;
 
@@ -182,9 +165,7 @@ export default function useTracker() {
     return () => clearInterval(interval);
   }, [recording]);
 
-  /* -----------------------------------------
-     GPS TRACKING
-  ----------------------------------------- */
+//trip recording 
   useEffect(() => {
     if (!recording) return;
 

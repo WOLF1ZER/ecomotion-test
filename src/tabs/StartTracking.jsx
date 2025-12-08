@@ -25,12 +25,9 @@ const StartTracking = () => {
     setMode,
   } = useTracker();
 
-  /** Start tracking, optionally as a planned trip */
   function handleStart() {
     start(plannedTrip);
   }
-
-  /** Stop tracking — saving is handled inside useTracker.stop() */
   function handleStop() {
     stop();
   }
@@ -63,22 +60,22 @@ const StartTracking = () => {
         </p>
       </div>
 
-      {/* Map */}
+      {/* map */}
       <div className="rounded-3xl overflow-hidden shadow-lg border border-gray-200">
         <TrackingMap position={position} path={path} />
       </div>
 
-      {/* Mode Selector */}
+      {/* mode selector */}
       <VehicleTypeSelector mode={mode} setMode={setMode} />
 
-      {/* Stats */}
+      {/* stats */}
       <TrackStats
         duration={duration}
         distance={distance}
         co2Saved={co2Saved}
       />
 
-      {/* Controls */}
+      {/* controls */}
       <TrackControls
         recording={recording}
         start={handleStart}

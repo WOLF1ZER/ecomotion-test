@@ -7,14 +7,12 @@ import { toast } from "react-toastify";
 
 const PlanJourney = () => {
   const navigate = useNavigate();
-
-  // FORM STATES
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [mode, setMode] = useState("walk");
   const [loading, setLoading] = useState(false);
 
-  // SAVE TRIP TO FIRESTORE
+  //save trip
   async function createPlannedTrip() {
     if (!name.trim()) {
       toast.error("Trip name cannot be empty");
@@ -39,8 +37,8 @@ const PlanJourney = () => {
         name: name.trim(),
         date,
         mode,
-        started: false,       // IMPORTANT
-        completed: false,     // IMPORTANT
+        started: false,     
+        completed: false,     
         createdAt: serverTimestamp(),
       };
 
@@ -50,8 +48,7 @@ const PlanJourney = () => {
       );
 
       toast.success("Planned trip created!");
-
-      // Navigate to tracking & pass trip info
+        //navigate when trip created
       navigate("/track", {
         state: {
           plannedTrip: { id: docRef.id, ...tripData }
@@ -71,8 +68,6 @@ const PlanJourney = () => {
       <h1 className="text-4xl font-bold text-forest mb-6">Plan a Trip</h1>
 
       <div className="bg-white p-6 rounded-3xl shadow-md border border-gray-100">
-
-        {/* Trip Name */}
         <label className="block text-forest mb-1 font-medium">Trip Name</label>
         <input
           type="text"
@@ -80,26 +75,18 @@ const PlanJourney = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Morning Ride, Gym Walk..."
-          className="w-full p-3 rounded-xl border border-gray-300 mb-4 focus:outline-primary"
-        />
-
-        {/* Date Picker */}
+          className="w-full p-3 rounded-xl border border-gray-300 mb-4 focus:outline-primary" />
         <label className="block text-forest mb-1 font-medium">Date & Time</label>
         <input
           type="datetime-local"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="w-full p-3 rounded-xl border border-gray-300 mb-4 focus:outline-primary"
-        />
-
-        {/* Mode Selector */}
+          className="w-full p-3 rounded-xl border border-gray-300 mb-4 focus:outline-primary" />
         <label className="block text-forest mb-2 font-medium">
           Transport Mode
         </label>
         <VehicleTypeSelector mode={mode} setMode={setMode} />
 
-
-        {/* START BUTTON */}
         <button
           onClick={createPlannedTrip}
           disabled={loading}

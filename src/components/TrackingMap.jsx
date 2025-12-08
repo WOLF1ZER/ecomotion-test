@@ -62,9 +62,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
   return (
     <button
       onClick={() => map && onClick(map)}
-      className="absolute bottom-4 right-4 bg-white p-3 rounded-full 
-                 shadow-lg hover:bg-gray-100 transition z-999"
-    >
+      className="absolute bottom-4 right-4 bg-white p-3 rounded-full shadow-lg hover:bg-gray-100 transition z-999">
       <FaCrosshairs className="text-primary" size={18} />
     </button>
   );

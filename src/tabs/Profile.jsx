@@ -30,14 +30,13 @@ const Profile = () => {
       const user = auth.currentUser;
       if (!user) return;
 
-      // 1️⃣ Fetch user basic info
+      //user info
       const userRef = doc(db, "users", user.uid);
       const userSnap = await getDoc(userRef);
 
       if (userSnap.exists()) {
         setUserData(userSnap.data());
       } else {
-        // fallback if user doc doesn't exist
         setUserData({
           displayName: user.displayName || "User",
           email: user.email
@@ -68,18 +67,14 @@ async function handlePasswordChange(e) {
 
   const user = auth.currentUser;
   if (!user) return toast.error("You must be logged in.");
-
-  // 🔥 Block Google accounts
+  //for any reason if logged in with google 
   if (user.providerData[0].providerId !== "password") {
     return toast.error("You signed in with Google. Password change is not available.");
   }
-
+ //password update
   try {
-    // Reauthenticate
     const credential = EmailAuthProvider.credential(user.email, oldPass);
     await reauthenticateWithCredential(user, credential);
-
-    // Update password
     await updatePassword(user, newPass);
 
     toast.success("Password updated successfully!");

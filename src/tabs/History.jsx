@@ -9,7 +9,7 @@ const History = () => {
   const [trips, setTrips] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Load trips on mount
+  //load trips
   useEffect(() => {
     async function loadTrips() {
       try {
@@ -34,7 +34,7 @@ const History = () => {
         ? b.startedAt
         : new Date(b.startedAt);
 
-    return dateB - dateA; // newest → oldest
+    return dateB - dateA;
   });
 
         setTrips(tripsArr);
@@ -62,18 +62,12 @@ const History = () => {
   return (
     <div className="pt-24 px-6 max-w-3xl mx-auto mb-[70px]">
       <h1 className="text-4xl font-bold text-forest mb-6">History</h1>
-
-      {/* Loading state */}
       {loading && (
         <Loader />
       )}
-
-      {/* No trips */}
       {!loading && trips.length === 0 && (
         <p className="text-gray-600 text-lg">No trips recorded yet.</p>
       )}
-
-      {/* Trips list */}
       {!loading && trips.length > 0 && (
         <ul className="flex flex-col gap-3">
           {trips.map((trip) => (

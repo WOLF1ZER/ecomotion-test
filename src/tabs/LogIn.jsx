@@ -11,14 +11,13 @@ const LogIn = () => {
   const [reg, setReg] = useState(false);
   const [emailInput, setEmailInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-
   const [regUsername, setRegUsername] = useState("");
   const [regEmail, setRegEmail] = useState("");
   const [regPassword, setRegPassword] = useState("");
 
   const navigate = useNavigate();
 
- // LOGIN
+  //login
   async function handleLogIn(e) {
     e.preventDefault();
 
@@ -32,7 +31,7 @@ const LogIn = () => {
     }
   }
 
-  // REGISTER
+  //reg
   async function handleRegister(e) {
     e.preventDefault();
 
@@ -60,8 +59,6 @@ const LogIn = () => {
           <h2 className="text-2xl sm:text-3xl font-semibold text-center text-forest mb-6">
             {reg ? "Create an Account" : "Welcome Back"}
           </h2>
-
-          {/* Login Form */}
           {!reg && (
             <form className="space-y-4">
               <div>
@@ -89,7 +86,7 @@ const LogIn = () => {
               </div>
 
               <button
-              onClick={handleLogIn}
+                onClick={handleLogIn}
                 type="submit"
                 className="w-full bg-primary text-white py-3 rounded-xl text-lg font-medium hover:bg-secondary transition cursor-pointer"
               >
@@ -97,11 +94,8 @@ const LogIn = () => {
               </button>
             </form>
           )}
-
-          {/* Registration Form */}
           {reg && (
             <form className="space-y-4">
-              {/* Username */}
               <div>
                 <label className="text-forest text-sm font-medium">
                   Username
@@ -115,8 +109,6 @@ const LogIn = () => {
                   required
                 />
               </div>
-
-              {/* Email */}
               <div>
                 <label className="text-forest text-sm font-medium">Email</label>
                 <input
@@ -128,8 +120,6 @@ const LogIn = () => {
                   required
                 />
               </div>
-
-              {/* Password */}
               <div>
                 <label className="text-forest text-sm font-medium">
                   Password
@@ -153,8 +143,6 @@ const LogIn = () => {
               </button>
             </form>
           )}
-
-          {/* Toggle Login/Register */}
           <div className="text-center mt-6">
             {!reg ? (
               <p className="text-sm text-gray-600">

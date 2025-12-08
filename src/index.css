@@ -15,7 +15,7 @@
   --color-forest: #1A3D2F;
 }
 
-/* Hide Scrollbars */
+/* hide scrollbars */
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -33,6 +33,6 @@
   -ms-overflow-style: none;
 }
 
-body {
-background-color: #F5FDF7;
+body{
+  background-color: #F5FDF7;
 }
