@@ -43,7 +43,6 @@ const Badges = () => {
   return (
     <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
       <h2 className="text-xl font-semibold text-forest mb-4">Badges</h2>
-
       <div className="flex gap-4 mb-6">
         <div
           className={`w-14 h-14 rounded-full flex items-center justify-center shadow-sm
